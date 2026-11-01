@@ -1,0 +1,251 @@
+{
+  "config_schema": [
+    {
+      "key": "intro",
+      "type": "section",
+      "options": []
+    },
+    {
+      "key": "cloud_discovery",
+      "type": "boolean",
+      "options": []
+    },
+    {
+      "key": "hosts",
+      "type": "string",
+      "options": []
+    },
+    {
+      "key": "poll_interval",
+      "type": "select",
+      "options": ["10", "30", "60"]
+    },
+    {
+      "key": "language",
+      "type": "select",
+      "options": ["en", "fr", "de", "es"]
+    },
+    {
+      "key": "help",
+      "type": "section",
+      "options": []
+    }
+  ],
+  "actions": ["test_connection"],
+  "widgets": [
+    {
+      "key": "pixoo",
+      "settings": ["device"]
+    }
+  ],
+  "scene_triggers": [
+    {
+      "key": "unreachable",
+      "fields": [
+        {
+          "key": "device",
+          "options": []
+        }
+      ],
+      "variables": [
+        {
+          "key": "name",
+          "type": "string"
+        },
+        {
+          "key": "host",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "key": "reachable_again",
+      "fields": [
+        {
+          "key": "device",
+          "options": []
+        }
+      ],
+      "variables": [
+        {
+          "key": "name",
+          "type": "string"
+        },
+        {
+          "key": "host",
+          "type": "string"
+        }
+      ]
+    }
+  ],
+  "scene_actions": [
+    {
+      "key": "show_message",
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "required": true
+        },
+        {
+          "key": "text",
+          "type": "string",
+          "required": true
+        },
+        {
+          "key": "second_line",
+          "type": "string",
+          "required": false
+        },
+        {
+          "key": "color",
+          "type": "select",
+          "required": false
+        },
+        {
+          "key": "background",
+          "type": "select",
+          "required": false
+        },
+        {
+          "key": "speed",
+          "type": "select",
+          "required": false
+        },
+        {
+          "key": "duration",
+          "type": "number",
+          "required": false
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "key": "play_gif",
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "required": true
+        },
+        {
+          "key": "url",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "key": "show_clock_face",
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "required": true
+        },
+        {
+          "key": "clock_id",
+          "type": "number",
+          "required": false
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "key": "countdown",
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "required": true
+        },
+        {
+          "key": "minutes",
+          "type": "number",
+          "required": false
+        },
+        {
+          "key": "seconds",
+          "type": "number",
+          "required": false
+        },
+        {
+          "key": "action",
+          "type": "select",
+          "required": false
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "key": "stopwatch",
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "required": true
+        },
+        {
+          "key": "action",
+          "type": "select",
+          "required": false
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "key": "scoreboard",
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "required": true
+        },
+        {
+          "key": "blue",
+          "type": "number",
+          "required": false
+        },
+        {
+          "key": "red",
+          "type": "number",
+          "required": false
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "key": "noise_meter",
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "required": true
+        },
+        {
+          "key": "action",
+          "type": "select",
+          "required": false
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "key": "play_buzzer",
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "required": true
+        },
+        {
+          "key": "duration_ms",
+          "type": "number",
+          "required": false
+        }
+      ],
+      "outputs": []
+    }
+  ]
+}

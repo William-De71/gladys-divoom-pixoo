@@ -1,0 +1,18 @@
+Gladys Divoom Pixoo integration
+Copyright 2026 William-De71
+
+This product is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+It drives the Divoom Pixoo 64 displays of the local network through their
+official local HTTP API (http://doc.divoom-gz.com/web/#/12). To find them, it
+can ask the official Divoom "Find device" service
+(https://app.divoom-gz.com/Device/ReturnSameLANDevice), as the Divoom app
+does; this can be turned off in the configuration.
+
+The message rendering order (a frame, then text) and the alternative
+:9000/divoom_api endpoint of recent firmware follow the observations of the
+Home Assistant integration pixoo-homeassistant (MIT,
+https://github.com/gickowtf/pixoo-homeassistant); no code was copied.
+
+Divoom and Pixoo are trademarks of Divoom Technology Co., Ltd. This project is
+not affiliated with, endorsed or sponsored by Divoom.

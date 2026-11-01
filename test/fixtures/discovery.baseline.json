@@ -1,0 +1,38 @@
+[
+  {
+    "external_id": "ext:test-integration:device:a8032aff46b1:screen",
+    "category": "light",
+    "type": "binary",
+    "unit": null,
+    "min": 0,
+    "max": 1,
+    "step": null
+  },
+  {
+    "external_id": "ext:test-integration:device:a8032aff46b1:brightness",
+    "category": "light",
+    "type": "brightness",
+    "unit": null,
+    "min": 0,
+    "max": 100,
+    "step": null
+  },
+  {
+    "external_id": "ext:test-integration:device:a8032aff46b1:channel",
+    "category": "text",
+    "type": "select",
+    "unit": null,
+    "min": 0,
+    "max": 0,
+    "step": null
+  },
+  {
+    "external_id": "ext:test-integration:device:a8032aff46b1:message",
+    "category": "text",
+    "type": "text",
+    "unit": null,
+    "min": 0,
+    "max": 0,
+    "step": null
+  }
+]

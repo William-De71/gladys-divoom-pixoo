@@ -1,0 +1,1077 @@
+{
+  "manifest_version": 1,
+  "type": "device",
+  "name": "Divoom Pixoo",
+  "description": {
+    "en": "Divoom Pixoo 64 pixel display on the local network: screen, messages, GIFs, clocks and tools.",
+    "fr": "Écran à pixels Divoom Pixoo 64 en local : écran, messages, GIF, cadrans et outils.",
+    "de": "Divoom Pixoo 64 Pixel-Display lokal: Bildschirm, Nachrichten, GIFs, Uhren und Tools.",
+    "es": "Pantalla de píxeles Divoom Pixoo 64 en local: pantalla, mensajes, GIF, relojes y herramientas."
+  },
+  "version": "0.1.0",
+  "docker_image": "ghcr.io/william-de71/gladys-divoom-pixoo:0.1.0",
+  "gladys_version": ">=5.3.0",
+  "cover_image": "https://raw.githubusercontent.com/William-De71/gladys-divoom-pixoo/main/cover.jpg",
+  "categories": ["multimedia"],
+  "keywords": [
+    "Pixoo 64",
+    "Pixoo64",
+    "Divoom",
+    "pixel art",
+    "LED matrix",
+    "afficheur",
+    "écran LED",
+    "notification",
+    "horloge"
+  ],
+  "transports": ["local"],
+  "actions": [
+    {
+      "key": "test_connection",
+      "timeout_seconds": 60,
+      "label": {
+        "en": "Search and test the displays",
+        "fr": "Rechercher et tester les écrans",
+        "de": "Displays suchen und testen",
+        "es": "Buscar y probar las pantallas"
+      },
+      "description": {
+        "en": "Searches again, then lists every Pixoo found with its address and whether it answers.",
+        "fr": "Relance la recherche, puis liste chaque Pixoo trouvé avec son adresse et s’il répond.",
+        "de": "Sucht erneut und listet dann jedes gefundene Pixoo mit seiner Adresse und seiner Erreichbarkeit auf.",
+        "es": "Vuelve a buscar y lista cada Pixoo encontrado con su dirección y si responde."
+      }
+    }
+  ],
+  "config_schema": [
+    {
+      "key": "intro",
+      "type": "section",
+      "label": {
+        "en": "Before you start",
+        "fr": "Avant de commencer",
+        "de": "Bevor du beginnst",
+        "es": "Antes de empezar"
+      },
+      "description": {
+        "en": "For the Divoom Pixoo 64, through its official local API (HTTP, no account, no pairing). Set it up in the Divoom app first, on the same network as Gladys, and update its firmware. Then open the Discover tab. Commands and states stay on the local network.",
+        "fr": "Pour le Divoom Pixoo 64, par son API locale officielle (HTTP, ni compte ni appairage). Installez-le d’abord avec l’appli Divoom, sur le même réseau que Gladys, et mettez son micrologiciel à jour. Ouvrez ensuite l’onglet Découverte. Commandes et états restent sur le réseau local.",
+        "de": "Für das Divoom Pixoo 64, über seine offizielle lokale API (HTTP, kein Konto, keine Kopplung). Richte es zuerst in der Divoom-App ein, im selben Netzwerk wie Gladys, und aktualisiere seine Firmware. Öffne dann den Tab Entdecken. Befehle und Zustände bleiben im lokalen Netzwerk.",
+        "es": "Para el Divoom Pixoo 64, mediante su API local oficial (HTTP, sin cuenta ni emparejamiento). Configúrelo primero en la app Divoom, en la misma red que Gladys, y actualice su firmware. Después abra la pestaña Descubrir. Las órdenes y los estados se quedan en la red local."
+      }
+    },
+    {
+      "key": "cloud_discovery",
+      "type": "boolean",
+      "default": true,
+      "label": {
+        "en": "Find the displays with the Divoom service",
+        "fr": "Trouver les écrans avec le service Divoom",
+        "de": "Displays über den Divoom-Dienst finden",
+        "es": "Encontrar las pantallas con el servicio Divoom"
+      },
+      "description": {
+        "en": "The Pixoo announces nothing on the network: like the Divoom app, the search asks the official Divoom service which displays connect from your Internet address (their local address and MAC). Nothing is sent but the request itself. Turn it off to use typed addresses only.",
+        "fr": "Le Pixoo ne s’annonce pas sur le réseau : comme l’appli Divoom, la recherche demande au service officiel Divoom quels écrans se connectent depuis votre adresse Internet (leur adresse locale et leur MAC). Rien n’est envoyé à part la demande elle-même. Désactivez-la pour n’utiliser que les adresses saisies.",
+        "de": "Das Pixoo kündigt sich im Netzwerk nicht an: Wie die Divoom-App fragt die Suche den offiziellen Divoom-Dienst, welche Displays sich von deiner Internetadresse aus verbinden (ihre lokale Adresse und MAC). Außer der Anfrage selbst wird nichts gesendet. Schalte sie aus, um nur eingegebene Adressen zu nutzen.",
+        "es": "El Pixoo no se anuncia en la red: como la app Divoom, la búsqueda pregunta al servicio oficial de Divoom qué pantallas se conectan desde su dirección de Internet (su dirección local y su MAC). No se envía nada aparte de la propia petición. Desactívela para usar solo direcciones escritas."
+      }
+    },
+    {
+      "key": "hosts",
+      "type": "string",
+      "default": "",
+      "label": {
+        "en": "IP addresses (optional)",
+        "fr": "Adresses IP (facultatif)",
+        "de": "IP-Adressen (optional)",
+        "es": "Direcciones IP (opcional)"
+      },
+      "placeholder": {
+        "en": "192.168.1.60",
+        "fr": "192.168.1.60",
+        "de": "192.168.1.60",
+        "es": "192.168.1.60"
+      },
+      "description": {
+        "en": "For a Pixoo the Divoom search does not find (search off, VPN, several Internet connections). Separate them with commas. Give the Pixoo a fixed address in your router.",
+        "fr": "Pour un Pixoo que la recherche Divoom ne trouve pas (recherche désactivée, VPN, plusieurs connexions Internet). Séparez-les par des virgules. Donnez au Pixoo une adresse fixe dans votre box.",
+        "de": "Für ein Pixoo, das die Divoom-Suche nicht findet (Suche aus, VPN, mehrere Internetanschlüsse). Durch Kommas trennen. Gib dem Pixoo im Router eine feste Adresse.",
+        "es": "Para un Pixoo que la búsqueda de Divoom no encuentra (búsqueda desactivada, VPN, varias conexiones a Internet). Sepárelas con comas. Asigne al Pixoo una dirección fija en su router."
+      }
+    },
+    {
+      "key": "poll_interval",
+      "type": "select",
+      "default": "30",
+      "label": {
+        "en": "State refresh",
+        "fr": "Actualisation de l’état",
+        "de": "Zustandsaktualisierung",
+        "es": "Actualización del estado"
+      },
+      "description": {
+        "en": "How often each Pixoo is asked for its screen, brightness and channel (changes made in the Divoom app or on the device).",
+        "fr": "Fréquence à laquelle chaque Pixoo est interrogé sur son écran, sa luminosité et son canal (changements faits dans l’appli Divoom ou sur l’appareil).",
+        "de": "Wie oft jedes Pixoo nach Bildschirm, Helligkeit und Kanal gefragt wird (Änderungen in der Divoom-App oder am Gerät).",
+        "es": "Con qué frecuencia se pregunta a cada Pixoo por su pantalla, su brillo y su canal (cambios hechos en la app Divoom o en el aparato)."
+      },
+      "options": [
+        {
+          "value": "10",
+          "label": {
+            "en": "10 seconds",
+            "fr": "10 secondes",
+            "de": "10 Sekunden",
+            "es": "10 segundos"
+          }
+        },
+        {
+          "value": "30",
+          "label": {
+            "en": "30 seconds",
+            "fr": "30 secondes",
+            "de": "30 Sekunden",
+            "es": "30 segundos"
+          }
+        },
+        {
+          "value": "60",
+          "label": {
+            "en": "1 minute",
+            "fr": "1 minute",
+            "de": "1 Minute",
+            "es": "1 minuto"
+          }
+        }
+      ]
+    },
+    {
+      "key": "language",
+      "type": "select",
+      "default": "en",
+      "label": {
+        "en": "Language of the device texts",
+        "fr": "Langue des textes des appareils",
+        "de": "Sprache der Gerätetexte",
+        "es": "Idioma de los textos de los dispositivos"
+      },
+      "description": {
+        "en": "Feature and channel names in the Discover tab and error messages of the scenes. Gladys does not send your language with them.",
+        "fr": "Noms des fonctionnalités et des canaux dans l’onglet Découverte et messages d’erreur des scènes. Gladys n’envoie pas votre langue avec eux.",
+        "de": "Funktions- und Kanalnamen im Tab Entdecken und Fehlermeldungen der Szenen. Gladys sendet deine Sprache nicht mit.",
+        "es": "Nombres de las funciones y de los canales en la pestaña Descubrir y mensajes de error de las escenas. Gladys no envía su idioma con ellos."
+      },
+      "options": [
+        {
+          "value": "en",
+          "label": {
+            "en": "English",
+            "fr": "Anglais",
+            "de": "Englisch",
+            "es": "Inglés"
+          }
+        },
+        {
+          "value": "fr",
+          "label": {
+            "en": "French",
+            "fr": "Français",
+            "de": "Französisch",
+            "es": "Francés"
+          }
+        },
+        {
+          "value": "de",
+          "label": {
+            "en": "German",
+            "fr": "Allemand",
+            "de": "Deutsch",
+            "es": "Alemán"
+          }
+        },
+        {
+          "value": "es",
+          "label": {
+            "en": "Spanish",
+            "fr": "Espagnol",
+            "de": "Español",
+            "es": "Español"
+          }
+        }
+      ]
+    },
+    {
+      "key": "help",
+      "type": "section",
+      "label": {
+        "en": "A Pixoo is not found?",
+        "fr": "Un Pixoo n’est pas trouvé ?",
+        "de": "Ein Pixoo wird nicht gefunden?",
+        "es": "¿No se encuentra un Pixoo?"
+      },
+      "description": {
+        "en": "Check that the Pixoo is plugged in and on the same network as Gladys (not a guest network), then type its address (shown in the Divoom app, device settings) in the field above and use “Search and test the displays”.",
+        "fr": "Vérifiez que le Pixoo est branché et sur le même réseau que Gladys (pas un réseau invité), puis saisissez son adresse (visible dans l’appli Divoom, réglages de l’appareil) dans le champ ci-dessus et utilisez « Rechercher et tester les écrans ».",
+        "de": "Prüfe, ob das Pixoo angeschlossen und im selben Netzwerk wie Gladys ist (kein Gastnetz), gib dann seine Adresse (in der Divoom-App, Geräteeinstellungen) oben ein und nutze „Displays suchen und testen“.",
+        "es": "Compruebe que el Pixoo está enchufado y en la misma red que Gladys (no una red de invitados), luego escriba su dirección (visible en la app Divoom, ajustes del aparato) en el campo de arriba y use «Buscar y probar las pantallas»."
+      }
+    }
+  ],
+  "widgets": [
+    {
+      "key": "pixoo",
+      "icon": "grid",
+      "action_timeout_seconds": 30,
+      "label": {
+        "en": "Divoom Pixoo",
+        "fr": "Divoom Pixoo",
+        "de": "Divoom Pixoo",
+        "es": "Divoom Pixoo"
+      },
+      "description": {
+        "en": "One Pixoo: screen, channel, brightness; buttons for the screen, a text, the clock and a countdown.",
+        "fr": "Un Pixoo : écran, canal, luminosité ; boutons écran, texte, horloge et minuteur.",
+        "de": "Ein Pixoo: Bildschirm, Kanal, Helligkeit; Tasten für Bildschirm, Text, Uhr und Countdown.",
+        "es": "Un Pixoo: pantalla, canal, brillo; botones de pantalla, texto, reloj y temporizador."
+      },
+      "settings": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "required": true,
+          "label": {
+            "en": "Pixoo",
+            "fr": "Pixoo",
+            "de": "Pixoo",
+            "es": "Pixoo"
+          }
+        }
+      ]
+    }
+  ],
+  "scene_triggers": [
+    {
+      "key": "unreachable",
+      "label": {
+        "en": "Pixoo: not answering",
+        "fr": "Pixoo : ne répond plus",
+        "de": "Pixoo: antwortet nicht mehr",
+        "es": "Pixoo: deja de responder"
+      },
+      "description": {
+        "en": "A Pixoo stopped answering on the local network (twice in a row): unplugged, Wi-Fi lost.",
+        "fr": "Un Pixoo ne répond plus sur le réseau local (deux fois de suite) : débranché, Wi-Fi perdu.",
+        "de": "Ein Pixoo antwortet im lokalen Netzwerk nicht mehr (zweimal hintereinander): ausgesteckt, WLAN verloren.",
+        "es": "Un Pixoo deja de responder en la red local (dos veces seguidas): desenchufado, wifi perdido."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "required": false,
+          "label": {
+            "en": "Pixoo",
+            "fr": "Pixoo",
+            "de": "Pixoo",
+            "es": "Pixoo"
+          },
+          "description": {
+            "en": "Leave empty for any Pixoo.",
+            "fr": "Laissez vide pour n’importe quel Pixoo.",
+            "de": "Leer lassen für jedes Pixoo.",
+            "es": "Déjelo vacío para cualquier Pixoo."
+          }
+        }
+      ],
+      "variables": [
+        {
+          "key": "name",
+          "type": "string",
+          "label": {
+            "en": "Device name",
+            "fr": "Nom de l’appareil",
+            "de": "Gerätename",
+            "es": "Nombre del dispositivo"
+          }
+        },
+        {
+          "key": "host",
+          "type": "string",
+          "label": {
+            "en": "IP address",
+            "fr": "Adresse IP",
+            "de": "IP-Adresse",
+            "es": "Dirección IP"
+          }
+        }
+      ]
+    },
+    {
+      "key": "reachable_again",
+      "label": {
+        "en": "Pixoo: answering again",
+        "fr": "Pixoo : répond de nouveau",
+        "de": "Pixoo: antwortet wieder",
+        "es": "Pixoo: vuelve a responder"
+      },
+      "description": {
+        "en": "A Pixoo answers again after not answering.",
+        "fr": "Un Pixoo répond de nouveau après une coupure.",
+        "de": "Ein Pixoo antwortet wieder, nachdem es nicht geantwortet hat.",
+        "es": "Un Pixoo vuelve a responder tras no hacerlo."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "required": false,
+          "label": {
+            "en": "Pixoo",
+            "fr": "Pixoo",
+            "de": "Pixoo",
+            "es": "Pixoo"
+          },
+          "description": {
+            "en": "Leave empty for any Pixoo.",
+            "fr": "Laissez vide pour n’importe quel Pixoo.",
+            "de": "Leer lassen für jedes Pixoo.",
+            "es": "Déjelo vacío para cualquier Pixoo."
+          }
+        }
+      ],
+      "variables": [
+        {
+          "key": "name",
+          "type": "string",
+          "label": {
+            "en": "Device name",
+            "fr": "Nom de l’appareil",
+            "de": "Gerätename",
+            "es": "Nombre del dispositivo"
+          }
+        },
+        {
+          "key": "host",
+          "type": "string",
+          "label": {
+            "en": "IP address",
+            "fr": "Adresse IP",
+            "de": "IP-Adresse",
+            "es": "Dirección IP"
+          }
+        }
+      ]
+    }
+  ],
+  "scene_actions": [
+    {
+      "key": "show_message",
+      "timeout_seconds": 20,
+      "label": {
+        "en": "Show a message on a Pixoo",
+        "fr": "Afficher un message sur un Pixoo",
+        "de": "Nachricht auf einem Pixoo anzeigen",
+        "es": "Mostrar un mensaje en un Pixoo"
+      },
+      "description": {
+        "en": "One or two text lines over a plain background, scrolling when too long. With a duration, the Pixoo goes back to what it showed before.",
+        "fr": "Une ou deux lignes de texte sur un fond uni, qui défilent si elles sont trop longues. Avec une durée, le Pixoo revient ensuite à ce qu’il affichait.",
+        "de": "Eine oder zwei Textzeilen auf einfarbigem Hintergrund, die bei Überlänge laufen. Mit einer Dauer kehrt das Pixoo danach zur vorherigen Anzeige zurück.",
+        "es": "Una o dos líneas de texto sobre un fondo liso, que se desplazan si son demasiado largas. Con una duración, el Pixoo vuelve después a lo que mostraba."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "required": true,
+          "label": {
+            "en": "Pixoo",
+            "fr": "Pixoo",
+            "de": "Pixoo",
+            "es": "Pixoo"
+          }
+        },
+        {
+          "key": "text",
+          "type": "string",
+          "required": true,
+          "label": {
+            "en": "Text",
+            "fr": "Texte",
+            "de": "Text",
+            "es": "Texto"
+          },
+          "placeholder": {
+            "en": "Mail is here",
+            "fr": "Le courrier est là",
+            "de": "Post ist da",
+            "es": "Ha llegado el correo"
+          },
+          "description": {
+            "en": "Scene variables work, e.g. the temperature of a sensor.",
+            "fr": "Les variables de scène fonctionnent, par exemple la température d’un capteur.",
+            "de": "Szenenvariablen funktionieren, z. B. die Temperatur eines Sensors.",
+            "es": "Las variables de escena funcionan, por ejemplo la temperatura de un sensor."
+          }
+        },
+        {
+          "key": "second_line",
+          "type": "string",
+          "required": false,
+          "label": {
+            "en": "Second line",
+            "fr": "Deuxième ligne",
+            "de": "Zweite Zeile",
+            "es": "Segunda línea"
+          }
+        },
+        {
+          "key": "color",
+          "type": "select",
+          "required": false,
+          "default": "white",
+          "label": {
+            "en": "Text color",
+            "fr": "Couleur du texte",
+            "de": "Textfarbe",
+            "es": "Color del texto"
+          },
+          "options": [
+            {
+              "value": "white",
+              "label": {
+                "en": "White",
+                "fr": "Blanc",
+                "de": "Weiß",
+                "es": "Blanco"
+              }
+            },
+            {
+              "value": "yellow",
+              "label": {
+                "en": "Yellow",
+                "fr": "Jaune",
+                "de": "Gelb",
+                "es": "Amarillo"
+              }
+            },
+            {
+              "value": "orange",
+              "label": {
+                "en": "Orange",
+                "fr": "Orange",
+                "de": "Orange",
+                "es": "Naranja"
+              }
+            },
+            {
+              "value": "red",
+              "label": {
+                "en": "Red",
+                "fr": "Rouge",
+                "de": "Rot",
+                "es": "Rojo"
+              }
+            },
+            {
+              "value": "green",
+              "label": {
+                "en": "Green",
+                "fr": "Vert",
+                "de": "Grün",
+                "es": "Verde"
+              }
+            },
+            {
+              "value": "cyan",
+              "label": {
+                "en": "Cyan",
+                "fr": "Cyan",
+                "de": "Cyan",
+                "es": "Cian"
+              }
+            },
+            {
+              "value": "blue",
+              "label": {
+                "en": "Blue",
+                "fr": "Bleu",
+                "de": "Blau",
+                "es": "Azul"
+              }
+            },
+            {
+              "value": "magenta",
+              "label": {
+                "en": "Magenta",
+                "fr": "Magenta",
+                "de": "Magenta",
+                "es": "Magenta"
+              }
+            }
+          ]
+        },
+        {
+          "key": "background",
+          "type": "select",
+          "required": false,
+          "default": "black",
+          "label": {
+            "en": "Background",
+            "fr": "Fond",
+            "de": "Hintergrund",
+            "es": "Fondo"
+          },
+          "options": [
+            {
+              "value": "black",
+              "label": {
+                "en": "Black",
+                "fr": "Noir",
+                "de": "Schwarz",
+                "es": "Negro"
+              }
+            },
+            {
+              "value": "dark_blue",
+              "label": {
+                "en": "Dark blue",
+                "fr": "Bleu foncé",
+                "de": "Dunkelblau",
+                "es": "Azul oscuro"
+              }
+            },
+            {
+              "value": "dark_red",
+              "label": {
+                "en": "Dark red",
+                "fr": "Rouge foncé",
+                "de": "Dunkelrot",
+                "es": "Rojo oscuro"
+              }
+            },
+            {
+              "value": "dark_green",
+              "label": {
+                "en": "Dark green",
+                "fr": "Vert foncé",
+                "de": "Dunkelgrün",
+                "es": "Verde oscuro"
+              }
+            },
+            {
+              "value": "dark_orange",
+              "label": {
+                "en": "Dark orange",
+                "fr": "Orange foncé",
+                "de": "Dunkelorange",
+                "es": "Naranja oscuro"
+              }
+            }
+          ]
+        },
+        {
+          "key": "speed",
+          "type": "select",
+          "required": false,
+          "default": "normal",
+          "label": {
+            "en": "Scrolling",
+            "fr": "Défilement",
+            "de": "Laufgeschwindigkeit",
+            "es": "Desplazamiento"
+          },
+          "options": [
+            {
+              "value": "slow",
+              "label": {
+                "en": "Slow",
+                "fr": "Lent",
+                "de": "Langsam",
+                "es": "Lento"
+              }
+            },
+            {
+              "value": "normal",
+              "label": {
+                "en": "Normal",
+                "fr": "Normal",
+                "de": "Normal",
+                "es": "Normal"
+              }
+            },
+            {
+              "value": "fast",
+              "label": {
+                "en": "Fast",
+                "fr": "Rapide",
+                "de": "Schnell",
+                "es": "Rápido"
+              }
+            }
+          ]
+        },
+        {
+          "key": "duration",
+          "type": "number",
+          "required": false,
+          "default": 0,
+          "min": 0,
+          "max": 3600,
+          "label": {
+            "en": "Duration (seconds)",
+            "fr": "Durée (secondes)",
+            "de": "Dauer (Sekunden)",
+            "es": "Duración (segundos)"
+          },
+          "description": {
+            "en": "0 keeps the message until something else is shown.",
+            "fr": "0 garde le message jusqu’à ce qu’autre chose s’affiche.",
+            "de": "0 lässt die Nachricht stehen, bis etwas anderes angezeigt wird.",
+            "es": "0 mantiene el mensaje hasta que se muestre otra cosa."
+          }
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "key": "play_gif",
+      "timeout_seconds": 20,
+      "label": {
+        "en": "Play a GIF on a Pixoo",
+        "fr": "Lire un GIF sur un Pixoo",
+        "de": "GIF auf einem Pixoo abspielen",
+        "es": "Reproducir un GIF en un Pixoo"
+      },
+      "description": {
+        "en": "The Pixoo downloads a GIF from an address and plays it in a loop. GIFs of 16, 32 or 64 pixels wide only.",
+        "fr": "Le Pixoo télécharge un GIF depuis une adresse et le joue en boucle. GIF de 16, 32 ou 64 pixels de large uniquement.",
+        "de": "Das Pixoo lädt ein GIF von einer Adresse herunter und spielt es in Schleife ab. Nur GIFs mit 16, 32 oder 64 Pixel Breite.",
+        "es": "El Pixoo descarga un GIF desde una dirección y lo reproduce en bucle. Solo GIF de 16, 32 o 64 píxeles de ancho."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "required": true,
+          "label": {
+            "en": "Pixoo",
+            "fr": "Pixoo",
+            "de": "Pixoo",
+            "es": "Pixoo"
+          }
+        },
+        {
+          "key": "url",
+          "type": "string",
+          "required": true,
+          "label": {
+            "en": "GIF address",
+            "fr": "Adresse du GIF",
+            "de": "GIF-Adresse",
+            "es": "Dirección del GIF"
+          },
+          "placeholder": {
+            "en": "http://f.divoom-gz.com/64_64.gif",
+            "fr": "http://f.divoom-gz.com/64_64.gif",
+            "de": "http://f.divoom-gz.com/64_64.gif",
+            "es": "http://f.divoom-gz.com/64_64.gif"
+          },
+          "description": {
+            "en": "The Pixoo itself must reach this address; plain http works best.",
+            "fr": "Le Pixoo lui-même doit joindre cette adresse ; le http simple marche le mieux.",
+            "de": "Das Pixoo selbst muss diese Adresse erreichen; einfaches http funktioniert am besten.",
+            "es": "El propio Pixoo debe llegar a esta dirección; el http simple funciona mejor."
+          }
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "key": "show_clock_face",
+      "timeout_seconds": 15,
+      "label": {
+        "en": "Show a clock face on a Pixoo",
+        "fr": "Afficher un cadran sur un Pixoo",
+        "de": "Zifferblatt auf einem Pixoo anzeigen",
+        "es": "Mostrar una esfera en un Pixoo"
+      },
+      "description": {
+        "en": "Switches to the clock faces channel, with a given face or the current one.",
+        "fr": "Passe sur le canal des cadrans, avec un cadran donné ou celui en cours.",
+        "de": "Wechselt zum Zifferblatt-Kanal, mit einem bestimmten oder dem aktuellen Zifferblatt.",
+        "es": "Cambia al canal de esferas, con una esfera dada o la actual."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "required": true,
+          "label": {
+            "en": "Pixoo",
+            "fr": "Pixoo",
+            "de": "Pixoo",
+            "es": "Pixoo"
+          }
+        },
+        {
+          "key": "clock_id",
+          "type": "number",
+          "required": false,
+          "min": 0,
+          "max": 1000000000,
+          "label": {
+            "en": "Clock face number",
+            "fr": "Numéro du cadran",
+            "de": "Zifferblattnummer",
+            "es": "Número de la esfera"
+          },
+          "description": {
+            "en": "Choose the face in the Divoom app: the widget then shows its number. Empty keeps the current face.",
+            "fr": "Choisissez le cadran dans l’appli Divoom : le widget affiche alors son numéro. Vide garde le cadran en cours.",
+            "de": "Wähle das Zifferblatt in der Divoom-App: Das Widget zeigt dann seine Nummer. Leer behält das aktuelle.",
+            "es": "Elija la esfera en la app Divoom: el widget muestra entonces su número. Vacío mantiene la actual."
+          }
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "key": "countdown",
+      "timeout_seconds": 15,
+      "label": {
+        "en": "Countdown on a Pixoo",
+        "fr": "Minuteur sur un Pixoo",
+        "de": "Countdown auf einem Pixoo",
+        "es": "Temporizador en un Pixoo"
+      },
+      "description": {
+        "en": "Starts or stops the countdown tool of the Pixoo.",
+        "fr": "Lance ou arrête le minuteur du Pixoo.",
+        "de": "Startet oder stoppt den Countdown des Pixoo.",
+        "es": "Inicia o detiene el temporizador del Pixoo."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "required": true,
+          "label": {
+            "en": "Pixoo",
+            "fr": "Pixoo",
+            "de": "Pixoo",
+            "es": "Pixoo"
+          }
+        },
+        {
+          "key": "minutes",
+          "type": "number",
+          "required": false,
+          "default": 5,
+          "min": 0,
+          "max": 99,
+          "label": {
+            "en": "Minutes",
+            "fr": "Minutes",
+            "de": "Minuten",
+            "es": "Minutos"
+          }
+        },
+        {
+          "key": "seconds",
+          "type": "number",
+          "required": false,
+          "default": 0,
+          "min": 0,
+          "max": 59,
+          "label": {
+            "en": "Seconds",
+            "fr": "Secondes",
+            "de": "Sekunden",
+            "es": "Segundos"
+          }
+        },
+        {
+          "key": "action",
+          "type": "select",
+          "required": false,
+          "default": "start",
+          "label": {
+            "en": "Action",
+            "fr": "Action",
+            "de": "Aktion",
+            "es": "Acción"
+          },
+          "options": [
+            {
+              "value": "start",
+              "label": {
+                "en": "Start",
+                "fr": "Lancer",
+                "de": "Starten",
+                "es": "Iniciar"
+              }
+            },
+            {
+              "value": "stop",
+              "label": {
+                "en": "Stop",
+                "fr": "Arrêter",
+                "de": "Stoppen",
+                "es": "Detener"
+              }
+            }
+          ]
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "key": "stopwatch",
+      "timeout_seconds": 15,
+      "label": {
+        "en": "Stopwatch on a Pixoo",
+        "fr": "Chronomètre sur un Pixoo",
+        "de": "Stoppuhr auf einem Pixoo",
+        "es": "Cronómetro en un Pixoo"
+      },
+      "description": {
+        "en": "Starts, stops or resets the stopwatch tool of the Pixoo.",
+        "fr": "Lance, arrête ou remet à zéro le chronomètre du Pixoo.",
+        "de": "Startet, stoppt oder setzt die Stoppuhr des Pixoo zurück.",
+        "es": "Inicia, detiene o pone a cero el cronómetro del Pixoo."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "required": true,
+          "label": {
+            "en": "Pixoo",
+            "fr": "Pixoo",
+            "de": "Pixoo",
+            "es": "Pixoo"
+          }
+        },
+        {
+          "key": "action",
+          "type": "select",
+          "required": false,
+          "default": "start",
+          "label": {
+            "en": "Action",
+            "fr": "Action",
+            "de": "Aktion",
+            "es": "Acción"
+          },
+          "options": [
+            {
+              "value": "start",
+              "label": {
+                "en": "Start",
+                "fr": "Lancer",
+                "de": "Starten",
+                "es": "Iniciar"
+              }
+            },
+            {
+              "value": "stop",
+              "label": {
+                "en": "Stop",
+                "fr": "Arrêter",
+                "de": "Stoppen",
+                "es": "Detener"
+              }
+            },
+            {
+              "value": "reset",
+              "label": {
+                "en": "Reset",
+                "fr": "Remettre à zéro",
+                "de": "Zurücksetzen",
+                "es": "Poner a cero"
+              }
+            }
+          ]
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "key": "scoreboard",
+      "timeout_seconds": 15,
+      "label": {
+        "en": "Scoreboard on a Pixoo",
+        "fr": "Tableau des scores sur un Pixoo",
+        "de": "Anzeigetafel auf einem Pixoo",
+        "es": "Marcador en un Pixoo"
+      },
+      "description": {
+        "en": "Shows the scoreboard tool with a blue and a red score (0 to 999).",
+        "fr": "Affiche le tableau des scores avec un score bleu et un rouge (0 à 999).",
+        "de": "Zeigt die Anzeigetafel mit einem blauen und einem roten Punktestand (0 bis 999).",
+        "es": "Muestra el marcador con una puntuación azul y una roja (0 a 999)."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "required": true,
+          "label": {
+            "en": "Pixoo",
+            "fr": "Pixoo",
+            "de": "Pixoo",
+            "es": "Pixoo"
+          }
+        },
+        {
+          "key": "blue",
+          "type": "number",
+          "required": false,
+          "default": 0,
+          "min": 0,
+          "max": 999,
+          "label": {
+            "en": "Blue score",
+            "fr": "Score bleu",
+            "de": "Punkte Blau",
+            "es": "Puntuación azul"
+          }
+        },
+        {
+          "key": "red",
+          "type": "number",
+          "required": false,
+          "default": 0,
+          "min": 0,
+          "max": 999,
+          "label": {
+            "en": "Red score",
+            "fr": "Score rouge",
+            "de": "Punkte Rot",
+            "es": "Puntuación roja"
+          }
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "key": "noise_meter",
+      "timeout_seconds": 15,
+      "label": {
+        "en": "Noise meter on a Pixoo",
+        "fr": "Sonomètre sur un Pixoo",
+        "de": "Lärmmesser auf einem Pixoo",
+        "es": "Sonómetro en un Pixoo"
+      },
+      "description": {
+        "en": "Shows or stops the noise meter tool, which uses the microphone of the Pixoo.",
+        "fr": "Affiche ou arrête le sonomètre, qui utilise le micro du Pixoo.",
+        "de": "Zeigt oder stoppt den Lärmmesser, der das Mikrofon des Pixoo nutzt.",
+        "es": "Muestra o detiene el sonómetro, que usa el micrófono del Pixoo."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "required": true,
+          "label": {
+            "en": "Pixoo",
+            "fr": "Pixoo",
+            "de": "Pixoo",
+            "es": "Pixoo"
+          }
+        },
+        {
+          "key": "action",
+          "type": "select",
+          "required": false,
+          "default": "start",
+          "label": {
+            "en": "Action",
+            "fr": "Action",
+            "de": "Aktion",
+            "es": "Acción"
+          },
+          "options": [
+            {
+              "value": "start",
+              "label": {
+                "en": "Start",
+                "fr": "Lancer",
+                "de": "Starten",
+                "es": "Iniciar"
+              }
+            },
+            {
+              "value": "stop",
+              "label": {
+                "en": "Stop",
+                "fr": "Arrêter",
+                "de": "Stoppen",
+                "es": "Detener"
+              }
+            }
+          ]
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "key": "play_buzzer",
+      "timeout_seconds": 15,
+      "label": {
+        "en": "Buzz a Pixoo",
+        "fr": "Faire sonner un Pixoo",
+        "de": "Pixoo summen lassen",
+        "es": "Hacer sonar un Pixoo"
+      },
+      "description": {
+        "en": "Sounds the buzzer of the Pixoo, half a second on, half a second off, at most 10 seconds.",
+        "fr": "Fait sonner le buzzer du Pixoo, une demi-seconde sur deux, 10 secondes au plus.",
+        "de": "Lässt den Summer des Pixoo ertönen, eine halbe Sekunde an, eine halbe aus, höchstens 10 Sekunden.",
+        "es": "Hace sonar el zumbador del Pixoo, medio segundo sí y medio no, 10 segundos como máximo."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "required": true,
+          "label": {
+            "en": "Pixoo",
+            "fr": "Pixoo",
+            "de": "Pixoo",
+            "es": "Pixoo"
+          }
+        },
+        {
+          "key": "duration_ms",
+          "type": "number",
+          "required": false,
+          "default": 1500,
+          "min": 100,
+          "max": 10000,
+          "label": {
+            "en": "Duration (ms)",
+            "fr": "Durée (ms)",
+            "de": "Dauer (ms)",
+            "es": "Duración (ms)"
+          }
+        }
+      ],
+      "outputs": []
+    }
+  ]
+}
